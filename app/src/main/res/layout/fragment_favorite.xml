@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FavoriteFragment">
 
-    <LinearLayout
+    <com.ogaclejapan.smarttablayout.SmartTabLayout
+        android:id="@+id/view_pager_tab"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingBottom="4dp"
+        android:background="@color/colorPrimary"
+        app:stl_defaultTabTextColor="@android:color/white"
+        app:stl_indicatorColor="@android:color/white"
+        app:stl_distributeEvenly="true"
+        app:stl_indicatorInterpolation="smart"
+        app:stl_defaultTabTextSize="14sp"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_below="@id/view_pager_tab"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Daftar Favorite Anda"
-            android:gravity="center"
-            android:textSize="20sp"/>
-
-    </LinearLayout>
-
-</FrameLayout>
+</RelativeLayout>
