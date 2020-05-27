@@ -1,4 +1,4 @@
-package com.baliwork.moviecatalog.server
+package com.baliwork.moviecatalog.server.response
 
 import com.baliwork.moviecatalog.model.Movie
 

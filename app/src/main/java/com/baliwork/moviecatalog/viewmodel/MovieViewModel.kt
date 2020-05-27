@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.baliwork.moviecatalog.BuildConfig
 import com.baliwork.moviecatalog.model.Movie
 import com.baliwork.moviecatalog.server.Common
-import com.baliwork.moviecatalog.server.Responses
+import com.baliwork.moviecatalog.server.response.Responses
 import retrofit2.Call
 import retrofit2.Callback
 
