@@ -8,13 +8,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.baliwork.moviecatalog.BuildConfig
 import com.baliwork.moviecatalog.R
+import com.baliwork.moviecatalog.interfaces.TvShowClickListener
 import com.baliwork.moviecatalog.model.TvShow
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 class TvShowAdapter(
     private val context: Context,
-    private val tvShows: List<TvShow>
+    private val tvShows: List<TvShow>,
+    private val listener: TvShowClickListener
 ) : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -35,6 +37,10 @@ class TvShowAdapter(
         holder.itemView.rate_movie.rating = tvShows[position].vote_average.toFloat() / 2
         holder.itemView.tv_release_date.text = "Release : ${tvShows[position].first_air_date}"
         Glide.with(context).load(poster).into(holder.itemView.iv_poster)
+
+        holder.itemView.item_movies.setOnClickListener {
+            listener.onClick(position, tvShows)
+        }
     }
 
 }

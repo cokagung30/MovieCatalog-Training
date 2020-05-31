@@ -7,6 +7,7 @@ import com.baliwork.moviecatalog.BuildConfig
 import com.baliwork.moviecatalog.model.Movie
 import com.baliwork.moviecatalog.server.Common
 import com.baliwork.moviecatalog.server.response.Responses
+import com.baliwork.moviecatalog.sqlite.AppDatabase
 import retrofit2.Call
 import retrofit2.Callback
 
@@ -29,9 +30,13 @@ class MovieViewModel : ViewModel() {
                         movies.value = response.body()!!.results
                     }
             }
-
         })
     }
 
     fun getMovies() : LiveData<List<Movie>> = movies
+
+    fun getAllFavoriteMovie() : LiveData<List<Movie>> {
+        return AppDatabase.getInstance()
+            .movieDao().getAllFavoriteMovie()
+    }
 }

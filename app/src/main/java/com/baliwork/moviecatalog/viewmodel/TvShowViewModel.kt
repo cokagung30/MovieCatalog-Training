@@ -8,12 +8,13 @@ import com.baliwork.moviecatalog.model.TvShow
 import com.baliwork.moviecatalog.server.API
 import com.baliwork.moviecatalog.server.Common
 import com.baliwork.moviecatalog.server.response.TvShowResponse
+import com.baliwork.moviecatalog.sqlite.AppDatabase
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class TvShowViewModel : ViewModel() {
-    private lateinit var apiRest : API
+    private lateinit var apiRest: API
     private val tvShow = MutableLiveData<List<TvShow>>()
     private val key = BuildConfig.API_KEY
 
@@ -35,5 +36,10 @@ class TvShowViewModel : ViewModel() {
         })
     }
 
-    fun getTvShow() : LiveData<List<TvShow>> = tvShow
+    fun getTvShow(): LiveData<List<TvShow>> = tvShow
+
+    fun getAllTvShowFavorite(): LiveData<List<TvShow>> {
+        return AppDatabase.getInstance().tvShowDao()
+            .getAllFavoriteTvShow()
+    }
 }

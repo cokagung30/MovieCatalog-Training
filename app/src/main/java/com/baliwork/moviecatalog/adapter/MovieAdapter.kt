@@ -8,13 +8,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.baliwork.moviecatalog.BuildConfig
 import com.baliwork.moviecatalog.R
+import com.baliwork.moviecatalog.interfaces.MovieClickListener
 import com.baliwork.moviecatalog.model.Movie
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 class MovieAdapter (
     private val context: Context,
-    private val movies: List<Movie>
+    private val movies: List<Movie>,
+    private val listener: MovieClickListener
 ) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -39,6 +41,10 @@ class MovieAdapter (
         Glide.with(context).load(urlPoster).into(holder.itemView.iv_poster)
         holder.itemView.tv_release_date.text =
             "Release: ${movies[position].release_date}"
+
+        holder.itemView.item_movies.setOnClickListener {
+            listener.onClick(position, movies)
+        }
     }
 
 }
